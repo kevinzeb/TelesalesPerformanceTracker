@@ -4,19 +4,14 @@ import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { signIn, signOut } from 'next-auth/react';
-import Image from 'next/image';
 
-const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Playground', href: '/playground' }
-];
+const navigation = [{ name: 'Panel', href: '/' }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar({ user }: { user: any }) {
+export default function Navbar() {
   const pathname = usePathname();
 
   return (
@@ -29,24 +24,47 @@ export default function Navbar({ user }: { user: any }) {
                 <div className="flex flex-shrink-0 items-center">
                   <svg
                     width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
+                    height="33"
+                    viewBox="0 0 32 33"
                     fill="none"
-                    className="text-gray-100"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <rect
-                      width="100%"
-                      height="100%"
-                      rx="16"
-                      fill="currentColor"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-                      fill="black"
-                    />
+                    <mask
+                      id="mask0_2_2"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="32"
+                      height="33"
+                    >
+                      <circle cx="16" cy="16.5" r="16" fill="white" />
+                    </mask>
+                    <g mask="url(#mask0_2_2)">
+                      <rect
+                        x="25.6013"
+                        y="2.18419"
+                        width="6.54697"
+                        height="33.8238"
+                        transform="rotate(45 25.6013 2.18419)"
+                        fill="#0A0101"
+                      />
+                      <rect
+                        x="16.3381"
+                        y="-6.57367"
+                        width="6.54697"
+                        height="33.8238"
+                        transform="rotate(45 16.3381 -6.57367)"
+                        fill="#0A0101"
+                      />
+                      <rect
+                        x="35.0329"
+                        y="10.9421"
+                        width="6.54697"
+                        height="33.8238"
+                        transform="rotate(45 35.0329 10.9421)"
+                        fill="#0A0101"
+                      />
+                    </g>
                   </svg>
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
@@ -71,14 +89,14 @@ export default function Navbar({ user }: { user: any }) {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
-                      <span className="sr-only">Open user menu</span>
-                      <Image
+                      <span className="sr-only">Abrir menu del usuario</span>
+                      {/* <Image
                         className="h-8 w-8 rounded-full"
                         src={user?.image || 'https://avatar.vercel.sh/leerob'}
                         height={32}
                         width={32}
                         alt={`${user?.name || 'placeholder'} avatar`}
-                      />
+                      /> */}
                     </Menu.Button>
                   </div>
                   <Transition
@@ -91,7 +109,7 @@ export default function Navbar({ user }: { user: any }) {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {user ? (
+                      {/* {user ? (
                         <Menu.Item>
                           {({ active }) => (
                             <button
@@ -119,14 +137,14 @@ export default function Navbar({ user }: { user: any }) {
                             </button>
                           )}
                         </Menu.Item>
-                      )}
+                      )} */}
                     </Menu.Items>
                   </Transition>
                 </Menu>
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
-                  <span className="sr-only">Open main menu</span>
+                  <span className="sr-only">Abrir menu del usuario</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -157,7 +175,7 @@ export default function Navbar({ user }: { user: any }) {
               ))}
             </div>
             <div className="border-t border-gray-200 pt-4 pb-3">
-              {user ? (
+              {/* {user ? (
                 <>
                   <div className="flex items-center px-4">
                     <div className="flex-shrink-0">
@@ -196,7 +214,7 @@ export default function Navbar({ user }: { user: any }) {
                     Sign in
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           </Disclosure.Panel>
         </>
