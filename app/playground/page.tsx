@@ -48,6 +48,7 @@ export default function PlaygroundPage() {
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
+        
         {data.map((item) => (
           <Card key={item.category}>
             <Title>{item.category}</Title>
@@ -65,9 +66,6 @@ export default function PlaygroundPage() {
             </Flex>
             <BarList
               data={item.data}
-              valueFormatter={(number: number) =>
-                Intl.NumberFormat('us').format(number).toString()
-              }
               className="mt-2"
             />
           </Card>

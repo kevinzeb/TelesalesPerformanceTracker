@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Table,
   TableHead,
@@ -5,35 +7,35 @@ import {
   TableHeaderCell,
   TableBody,
   TableCell,
-  Text
+  Text,
+  Button
 } from '@tremor/react';
+import { TelesalesOperator } from '../core/operator/telesalesOperator.entity';
+import Link from 'next/link';
 
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
-
-export default function UsersTable({ users }: { users: User[] }) {
+export default function UsersTable({ users }: { users: TelesalesOperator[] }) {
   return (
     <Table>
       <TableHead>
         <TableRow>
+          <TableHeaderCell>ID</TableHeaderCell>
           <TableHeaderCell>Name</TableHeaderCell>
-          <TableHeaderCell>Username</TableHeaderCell>
           <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell></TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.id}>
+            <TableCell>{user.id}</TableCell>
             <TableCell>{user.name}</TableCell>
             <TableCell>
-              <Text>{user.username}</Text>
+              <Text>{user.email}</Text>
             </TableCell>
             <TableCell>
-              <Text>{user.email}</Text>
+              <Link href={`/feedback/${user.id}`} color="blue">
+                <Button variant="light">Ver reporte</Button>
+              </Link>
             </TableCell>
           </TableRow>
         ))}

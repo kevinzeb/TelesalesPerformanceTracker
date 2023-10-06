@@ -5,7 +5,11 @@ import { usePathname } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const navigation = [{ name: 'Panel', href: '/' }];
+const navigation = [
+  { name: 'Operadores Telesales', href: '/' },
+  { name: 'Evalua llamadas', href: '/feedbackPhone' },
+  { name: 'Evalua chats', href: '/feedbackChat' }
+];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');

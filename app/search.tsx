@@ -1,12 +1,20 @@
 'use client';
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { usePathname, useRouter } from 'next/navigation';
-import { useTransition } from 'react';
+import { usePathname, useRouter, useParams } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
-export default function Search({ disabled }: { disabled?: boolean }) {
+export default function Search({
+  disabled,
+  initValue
+}: {
+  disabled?: boolean;
+  initValue?: string;
+}) {
   const { replace } = useRouter();
+  const [name, setName] = useState<string>(initValue ?? '');
   const pathname = usePathname();
+
   const [isPending, startTransition] = useTransition();
 
   function handleSearch(term: string) {
@@ -17,6 +25,7 @@ export default function Search({ disabled }: { disabled?: boolean }) {
       params.delete('q');
     }
 
+    setName(term);
     startTransition(() => {
       replace(`${pathname}?${params.toString()}`);
     });
@@ -25,7 +34,7 @@ export default function Search({ disabled }: { disabled?: boolean }) {
   return (
     <div className="relative mt-5 max-w-md">
       <label htmlFor="search" className="sr-only">
-        Search
+        Buscar por nombre
       </label>
       <div className="rounded-md shadow-sm">
         <div
@@ -41,9 +50,10 @@ export default function Search({ disabled }: { disabled?: boolean }) {
           type="text"
           name="search"
           id="search"
+          value={name}
           disabled={disabled}
           className="h-10 block w-full rounded-md border border-gray-200 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-          placeholder="Search by name..."
+          placeholder="Buscar por nombre..."
           spellCheck={false}
           onChange={(e) => handleSearch(e.target.value)}
         />
