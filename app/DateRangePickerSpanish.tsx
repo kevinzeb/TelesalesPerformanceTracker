@@ -5,14 +5,19 @@ import {
   Button,
   DateRangePicker,
   DateRangePickerItem,
-  DateRangePickerValue
+  DateRangePickerValue,
+  Text
 } from '@tremor/react';
 import { es } from 'date-fns/locale';
 import { calculateDateRanges } from '../core/helpers/utils/calculateDateRanges';
 import useProvider from './hooks/useProvider';
 import { FeedbackOperatorCall } from '../core/feedbackOperator/feedbackOperator.entity';
 
-export default function DateRangePickerSpanish({ operatorId }: { operatorId: string }) {
+export default function DateRangePickerSpanish({
+  operatorId
+}: {
+  operatorId: string;
+}) {
   const provider = useProvider();
   const [loadFeedback, setLoadFeedback] = useState<boolean>(false);
   const [feedback, setFeedback] = useState<FeedbackOperatorCall | null>(null);
@@ -115,14 +120,21 @@ export default function DateRangePickerSpanish({ operatorId }: { operatorId: str
           </svg>
         </div>
       )}
-      {(feedback?.feedback || []).map(({ feedback_message }, i) => (
-        <div
-          key={i}
-          dangerouslySetInnerHTML={{
-            __html: feedback_message
-          }}
-        />
-      ))}
+      {(feedback?.feedback || []).map(
+        ({ feedback_message, conversation_id }, i) => (
+          <>
+            <Text className="text-blue-400 mb-8">
+              ID de la conversación:{conversation_id}
+            </Text>
+            <div
+              key={i}
+              dangerouslySetInnerHTML={{
+                __html: feedback_message
+              }}
+            />
+          </>
+        )
+      )}
     </div>
   );
 }
