@@ -4,7 +4,7 @@ import Search from './search';
 
 import UsersTable from './table';
 import useProvider from './hooks/useProvider';
-import { DateRangePickerSpanish } from './DateRangePickerSpanish';
+
 
 export const dynamic = 'force-dynamic';
 
